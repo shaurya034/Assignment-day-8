@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Gallery & Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #202a3a;
+            background: #f3f5f9;
+        }
+
+        header {
+            padding: 22px 5%;
+            color: white;
+            background: #2453a1;
+        }
+
+        header h1 {
+            margin: 4px 0 0;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            padding: 14px 5%;
+            background: white;
+            border-bottom: 1px solid #dce2eb;
+        }
+
+        nav a {
+            color: #2453a1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            width: min(1200px, 92%);
+            margin: 28px auto;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #2453a1;
+        }
+
+        /* Photo gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-auto-rows: 180px;
+            gap: 14px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .gallery img:nth-child(1),
+        .gallery img:nth-child(6) {
+            grid-row: span 2;
+        }
+
+        /* Magazine layout using named grid areas */
+        .magazine {
+            display: grid;
+            grid-template-areas:
+                "feature feature side"
+                "story1 story2 side";
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .magazine article {
+            padding: 22px;
+            min-height: 150px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #00000010;
+        }
+
+        .feature {
+            grid-area: feature;
+            background: #dce8ff !important;
+        }
+
+        .story1 {
+            grid-area: story1;
+        }
+
+        .story2 {
+            grid-area: story2;
+        }
+
+        .side-story {
+            grid-area: side;
+        }
+
+        /* Dashboard layout */
+        .dashboard {
+            display: grid;
+            grid-template-areas:
+                "dash-header dash-header"
+                "sidebar products";
+            grid-template-columns: 220px 1fr;
+            gap: 18px;
+        }
+
+        .dash-header {
+            grid-area: dash-header;
+            padding: 20px;
+            color: white;
+            background: #2453a1;
+            border-radius: 10px;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            margin: 14px 0;
+            color: #2453a1;
+            text-decoration: none;
+        }
+
+        .products {
+            grid-area: products;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #00000010;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 14px;
+        }
+
+        .card-content p {
+            color: #687386;
+        }
+
+        .card button {
+            margin-top: auto;
+            padding: 10px;
+            color: white;
+            background: #2453a1;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            .magazine {
+                grid-template-areas:
+                    "feature"
+                    "story1"
+                    "story2"
+                    "side";
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard {
+                grid-template-areas:
+                    "dash-header"
+                    "sidebar"
+                    "products";
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <p>DAY 8 | WEEK 8 (8.1 - 8.5)</p>
+        <h1>CSS Grid Project</h1>
+    </header>
+
+    <nav>
+        <a href="#gallery">Photo Gallery</a>
+        <a href="#magazine">Magazine Layout</a>
+        <a href="#dashboard">Dashboard</a>
+    </nav>
+
+    <main>
+        <section id="gallery">
+            <h2>Photo Gallery</h2>
+            <div class="gallery">
+                <img src="https://picsum.photos/id/1015/600/800" alt="Mountain landscape">
+                <img src="https://picsum.photos/id/1025/600/400" alt="Dog outdoors">
+                <img src="https://picsum.photos/id/1039/600/400" alt="Forest">
+                <img src="https://picsum.photos/id/1043/600/400" alt="Nature scene">
+                <img src="https://picsum.photos/id/1050/600/400" alt="Waterfall">
+                <img src="https://picsum.photos/id/1069/600/800" alt="Ocean view">
+            </div>
+        </section>
+
+        <section id="magazine">
+            <h2>Magazine Layout</h2>
+            <div class="magazine">
+                <article class="feature">
+                    <h3>Featured Story</h3>
+                    <p>A flexible magazine layout created with named CSS Grid areas.</p>
+                </article>
+                <article class="story1">
+                    <h3>Design & Technology</h3>
+                    <p>Ideas and tools that shape the way we build for the web.</p>
+                </article>
+                <article class="story2">
+                    <h3>Travel Notes</h3>
+                    <p>Explore places, people, and new perspectives.</p>
+                </article>
+                <article class="side-story">
+                    <h3>More Stories</h3>
+                    <p>Grid makes it easy to arrange content into clear sections.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="dashboard">
+            <h2>Product Dashboard</h2>
+            <div class="dashboard">
+                <div class="dash-header">
+                    <h2>Dashboard</h2>
+                    <p>Welcome to your product store.</p>
+                </div>
+
+                <aside class="sidebar">
+                    <h3>Menu</h3>
+                    <a href="#dashboard">Overview</a>
+                    <a href="#dashboard">Products</a>
+                    <a href="#dashboard">Orders</a>
+                    <a href="#dashboard">Settings</a>
+                </aside>
+
+                <div class="products">
+                    <article class="card">
+                        <img src="https://picsum.photos/id/20/400/300" alt="Laptop">
+                        <div class="card-content">
+                            <h3>Laptop</h3>
+                            <p>Reliable laptop for everyday work.</p>
+                            <button type="button">View product</button>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/id/250/400/300" alt="Headphones">
+                        <div class="card-content">
+                            <h3>Headphones</h3>
+                            <p>Comfortable headphones with clear sound.</p>
+                            <button type="button">View product</button>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/id/160/400/300" alt="Camera">
+                        <div class="card-content">
+                            <h3>Camera</h3>
+                            <p>Capture photos and videos wherever you go.</p>
+                            <button type="button">View product</button>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/id/30/400/300" alt="Smart watch">
+                        <div class="card-content">
+                            <h3>Smart Watch</h3>
+                            <p>Track your daily activity and notifications.</p>
+                            <button type="button">View product</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
